@@ -1,3 +1,4 @@
+import Loading from "../utilities/Loading";
 import Render from "../utilities/Render";
 import useFetch from "../utilities/useFetch";
 
@@ -31,6 +32,8 @@ function Movie() {
     return ( 
         <>
             {data && <Render data={data} baseUrl={baseUrl} backdropSize={backdropSize} media={'movie'} />}
+
+            {isPending && <Loading />}
         </>
     );
 }

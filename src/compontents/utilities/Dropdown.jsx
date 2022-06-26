@@ -28,7 +28,7 @@ function Dropdown({isDropdownOpen, data, media}) {
 
         const vidData = await res.json()
         setTrailer(vidData)
-        console.log(trailer)
+        // console.log(trailer)
     }
     // getTrailer()
 
@@ -51,7 +51,7 @@ function Dropdown({isDropdownOpen, data, media}) {
             fixed 
             top-0 
             right-0
-            w-[40%]
+            md:w-[40%]
             text-white px-6
             pt-[60px] backdrop-blur-sm
             ${isDropdownOpen ? show : hide}`} >
@@ -61,7 +61,7 @@ function Dropdown({isDropdownOpen, data, media}) {
                     //     <h1 className="absolute z-10 bottom-6 left-6 w-[60%]">{data.title || data.name}</h1>
                     //     <img src={imgUrl} alt="" />
                     // </div>
-                    <RenderDropdown title={data.title || data.name} img={imgUrl} overview={data.overview} media={media}/>
+                    <RenderDropdown title={data.title || data.name} img={imgUrl} overview={data.overview} media={media} vid={trailer}/>
                 }
         </div>
     );
