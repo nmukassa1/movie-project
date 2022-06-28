@@ -1,5 +1,3 @@
-import {useState} from 'react'
-
 import Movie from "./compontents/pages/Movie";
 import Tv from "./compontents/pages/Tv";
 
