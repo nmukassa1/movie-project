@@ -7,12 +7,14 @@ function DropdownButton() {
 
     const [data, setData] = useState(null)
     const [media, setMedia] = useState(null)
+    const [trailer, setTrailer] = useState(null)
 
     function openMenu(){
         if(isDropdownOpen === false) {
             setIsDropdownOpen(true)
             setData(JSON.parse(localStorage.getItem('info')))
             setMedia(localStorage.getItem('media'))
+            setTrailer(JSON.parse(localStorage.getItem('trailerInfo')))
             // console.log(data)
         } else{
             setIsDropdownOpen(false)
@@ -21,11 +23,14 @@ function DropdownButton() {
 
     const btnRef = useRef()
 
+   
+
     useEffect(() =>{
             function closeDropdown(e){
                 if(e.composedPath()[0].id !== btnRef.current.id){
 
                     setIsDropdownOpen(false)
+                    // document.querySelector('iframe').src = ''
                 }
             }
 
@@ -40,7 +45,7 @@ function DropdownButton() {
                 {isDropdownOpen && <i className="fa-solid fa-xmark pointer-events-none"></i> }
                 {!isDropdownOpen && <i className="fa-solid fa-bars pointer-events-none"></i>}
             </button>
-            <Dropdown isDropdownOpen={isDropdownOpen} data={data} media={media}/>
+            <Dropdown isDropdownOpen={isDropdownOpen} data={data} media={media} trailerInfo={trailer}/>
         </>
     );
 }

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import RenderDropdown from "./RenderDropdown";
 
 
-function Dropdown({isDropdownOpen, data, media}) {
+function Dropdown({isDropdownOpen, data, media, trailerInfo}) {
 
     const hide = ' translate-x-full';
     const show = '';
@@ -17,27 +17,46 @@ function Dropdown({isDropdownOpen, data, media}) {
         const imgData = await res.json()
 
         setImgURL(imgData.images.base_url + imgData.images.backdrop_sizes[3] + data.backdrop_path)
+        // console.log(imgUrl)
     }
 
     // getImgUrl()
 
+
+
     const [trailer, setTrailer] = useState(null)
+    
 
     const getTrailer = async () =>{
         const res = await fetch(`https://api.themoviedb.org/3/${media}/${data.id}/videos?api_key=${apiKey}&language=en-UK`)
 
         const vidData = await res.json()
-        setTrailer(vidData)
+
+        let key;
+
+        for(let i = 0; i < vidData.results.length; i++){
+            if(vidData.results[i].type === 'Trailer'){
+                if(vidData.results[i].site === 'YouTube'){
+                    key = vidData.results[i].key
+                    break
+                }
+            }
+        }
+
+
+        const link = `https://www.youtube.com/embed/${key}`;
+        setTrailer(link)
         // console.log(trailer)
     }
-    // getTrailer()
+   
+    useEffect(() =>{
+        if(data !== null){
+            getImgUrl()
+            getTrailer()
+        }
+    }, [data])
 
-    {data && (getImgUrl())}
-    // {data && (getTrailer())}
-
-    // useEffect(() =>{
-    //     {data && getTrailer()}
-    // }, [])
+   
 
     
     
@@ -54,14 +73,11 @@ function Dropdown({isDropdownOpen, data, media}) {
             md:w-[40%]
             text-white px-6
             pt-[60px] backdrop-blur-sm
+            overflow-scroll
             ${isDropdownOpen ? show : hide}`} >
 
                 {data && 
-                    // <div id="hero" className="relative w-[70%] mx-auto">
-                    //     <h1 className="absolute z-10 bottom-6 left-6 w-[60%]">{data.title || data.name}</h1>
-                    //     <img src={imgUrl} alt="" />
-                    // </div>
-                    <RenderDropdown title={data.title || data.name} img={imgUrl} overview={data.overview} media={media} vid={trailer}/>
+                    <RenderDropdown title={data.title || data.name} img={imgUrl} overview={data.overview} media={media} trailer={trailer}/>
                 }
         </div>
     );

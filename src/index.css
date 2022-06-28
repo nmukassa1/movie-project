@@ -6,3 +6,7 @@
 *{
   font-family: 'Montserrat', sans-serif;
 }
+
+#carousel button:hover > img{
+  filter: brightness(100%)
+}

@@ -1,6 +1,7 @@
-function RenderDropdown({title, img, overview, trailer}) {
 
-    // console.log(trailer)
+
+function RenderDropdown({title, img, overview, trailer}) {
+    
     return ( 
         <>
             <div id="hero" className="relative w-[90%] mx-auto">
@@ -12,6 +13,11 @@ function RenderDropdown({title, img, overview, trailer}) {
 
             <div id="overview">
                 <p>{overview}</p>
+            </div>
+
+            <div id="trailer" className="my-5">
+                {trailer && <iframe title="trailer" src={trailer} frameBorder="0" allowFullScreen="true" className="w-full h-[230px]"></iframe>}
+                {!trailer && <span className="grid place-content-center w-full h-[200px]">No Trailer was found</span>}
             </div>
         </>
     );

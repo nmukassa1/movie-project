@@ -12,13 +12,23 @@ function Movie() {
         baseUrl, backdropSize, isPending
     } = useFetch(trendingMovie)
     
+
+    //Posting to storage so I can render the default information in 
+    //the dropdown menu when page is loaded
+
+    //Data will be going to DropsownButton component
     const postFirstDataToStorage = async () => {
 
-        const res = await fetch(`https://api.themoviedb.org/3/movie/${data.results[0].id}?api_key=${apiKey}&language=en-UK`)
+        const defaultDataRes = await fetch(`https://api.themoviedb.org/3/movie/${data.results[0].id}?api_key=${apiKey}&language=en-UK`)
 
-        const x = await res.json()
+        const defaultData = await defaultDataRes.json()
 
-        localStorage.setItem('info', JSON.stringify(x))
+        const defaultTrailerRes = await fetch(`https://api.themoviedb.org/3/movie/${data.results[0].id}/videos?api_key=${apiKey}&language=en-UK`)
+
+        const defaultTrailer = await defaultTrailerRes.json()
+
+        localStorage.setItem('info', JSON.stringify(defaultData))
+        localStorage.setItem('trailerInfo', JSON.stringify(defaultTrailer))
         localStorage.setItem('media', 'movie')
     }
 
