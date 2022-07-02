@@ -16,7 +16,7 @@ function App() {
         </header>
         <DropdownButton />
         <Routes>
-          <Route path="/movie-project/" element={<Movie />} />
+          <Route path="/" element={<Movie />} />
           <Route path="/movie" element={<Movie />} />
           <Route path="/tv" element={<Tv />} />
         </Routes>
