@@ -20,7 +20,7 @@ function App() {
           <Route path="/movie" element={<Movie />} />
           <Route path="/tv" element={<Tv />} />
         </Routes>
-      </div>
+      </div> 
     </HashRouter>
   );
 }
