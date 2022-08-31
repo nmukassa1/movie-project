@@ -1,14 +1,14 @@
 import Movie from "./compontents/pages/Movie";
 import Tv from "./compontents/pages/Tv";
 
-import {BrowserRouter, Link, Route, Routes} from 'react-router-dom'
+import {HashRouter, Link, Route, Routes} from 'react-router-dom'
 import DropdownButton from "./compontents/utilities/DropdownButton";
 
 
 function App() {
 
   return (
-    <BrowserRouter>
+    <HashRouter>
       <div className="App">
         <header className="flex gap-10 absolute left-[60px] top-[30px] z-20">
           <Link to="/movie" className="text-white">Movie</Link>
@@ -21,7 +21,7 @@ function App() {
           <Route path="/tv" element={<Tv />} />
         </Routes>
       </div>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
